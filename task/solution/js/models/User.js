@@ -7,7 +7,7 @@ GitHubApp.Models = GitHubApp.Models || {};
 GitHubApp.Models.User = Backbone.Model.extend({
   url: function () {
     'use strict';
-    return 'https://api.github.com/users/' + this.get('name');
+    return 'https://api.github.com/users/' + this.get('login');
   }
 });
 

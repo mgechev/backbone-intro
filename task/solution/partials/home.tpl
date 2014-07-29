@@ -4,8 +4,8 @@
 <ul>
 <% _.each(users, function (user, idx) { %>
   <li>
-    <a href="#/user/<%= user.name %>">
-      <%= user.name %>
+    <a href="#/user/<%= user.login %>">
+      <%= user.login %>
     </a>
     <a href="javascript:void(0)"
       class="delete-btn"

@@ -8,20 +8,26 @@ var GitHubAppRouter = Backbone.Router.extend({
     'user/:username': 'user',
     'statistics'    : 'stats'
   },
+  initialize: function () {
+    'use strict';
+    this.users = new GitHubApp.Models.UserCollection();
+  },
   home: function () {
     'use strict';
     GitHubApp.Controllers.FrontCtrl.setView({
       partial: 'partials/home.tpl',
       view   : GitHubApp.Views.Home,
-      model  : new GitHubApp.Models.UserCollection()
+      model  : this.users
     });
     GitHubApp.Controllers.FrontCtrl.render();
   },
   user: function (login) {
     'use strict';
-    var user = new GitHubApp.Models.User({
-      name: login
-    });
+    var match = this.users.where({ login: login });
+    if (!match || !match.length) {
+      throw new Error('User not found!');
+    }
+    var user = match[0];
     user.fetch()
       .done(function () {
         GitHubApp.Controllers.FrontCtrl.setView({
