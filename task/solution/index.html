@@ -11,11 +11,11 @@
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">GitHub</a>
+          <a class="navbar-brand" href="#/">GitHub</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="#/stats/users">User stats</a></li>
+            <li><a href="#/statistics">User stats</a></li>
           </ul>
           <img src="images/loading.gif" class="loading-image">
         </div>
@@ -23,10 +23,18 @@
     </nav>
     <div id="alert-container"></div>
   </header>
-  <section>
+  <section id="main-container">
   </section>
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/backbone/backbone.js"></script>
+  <script src="js/TemplateManager.js"></script>
+  <script src="js/views/Home.js"></script>
+  <script src="js/models/User.js"></script>
+  <script src="js/models/UserCollection.js"></script>
+  <script src="js/controllers/FrontCtrl.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/models/User.js"></script>
+  <script src="js/models/UserCollection.js"></script>
 </body>
 </html>
