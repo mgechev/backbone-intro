@@ -1,8 +1,11 @@
+/* global $, console */
+
 var GitHubApp = GitHubApp || {};
 
 GitHubApp.TemplateManager = {
   _cache: {},
   get: function (url) {
+    'use strict';
     var tpl = this._cache[url];
     if (tpl) {
       return $.when(tpl);

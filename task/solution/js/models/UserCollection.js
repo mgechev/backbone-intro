@@ -1,3 +1,5 @@
+/* global Backbone */
+
 var GitHubApp = GitHubApp || GitHubApp;
 
 GitHubApp.Models = GitHubApp.Models || {};

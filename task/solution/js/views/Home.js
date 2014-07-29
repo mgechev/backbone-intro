@@ -1,3 +1,5 @@
+/* global Backbone, $ */
+
 var GitHubApp = GitHubApp || GitHubApp;
 
 GitHubApp.Views = GitHubApp.Views || {};
@@ -9,12 +11,14 @@ GitHubApp.Views.Home = Backbone.View.extend({
   },
 
   initialize: function () {
+    'use strict';
     this.model.on('change', this.render, this);
     this.model.on('add', this.render, this);
     this.model.on('remove', this.render, this);
   },
 
   addUser: function () {
+    'use strict';
     var input = this.el.find('#user-input');
     this.model.add(new GitHubApp.Models.User({
       name: input.val()
@@ -23,11 +27,13 @@ GitHubApp.Views.Home = Backbone.View.extend({
   },
 
   removeUser: function (e) {
+    'use strict';
     var index = $(e.target).data('index');
     this.model.remove(this.model.at(index));
   },
 
   render: function () {
+    'use strict';
     this.el.html(this.template({ users: this.model.toJSON() }));
     return this;
   }
