@@ -13,13 +13,24 @@ var GitHubAppRouter = Backbone.Router.extend({
     GitHubApp.Controllers.FrontCtrl.setView({
       partial: 'partials/home.tpl',
       view   : GitHubApp.Views.Home,
-      model  : GitHubApp.Models.UserCollection
+      model  : new GitHubApp.Models.UserCollection()
     });
     GitHubApp.Controllers.FrontCtrl.render();
   },
-  user: function () {
+  user: function (login) {
     'use strict';
-    console.log('user');
+    var user = new GitHubApp.Models.User({
+      name: login
+    });
+    user.fetch()
+      .done(function () {
+        GitHubApp.Controllers.FrontCtrl.setView({
+          partial: 'partials/user.tpl',
+          view   : GitHubApp.Views.User,
+          model  : user
+        });
+        GitHubApp.Controllers.FrontCtrl.render();
+      });
   },
   stats: function () {
     'use strict';
