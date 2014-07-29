@@ -1,4 +1,4 @@
-/* global Backbone, console */
+/* global Backbone, $ */
 
 var GitHubApp = GitHubApp || {};
 
@@ -23,11 +23,16 @@ var GitHubAppRouter = Backbone.Router.extend({
   },
   user: function (login) {
     'use strict';
-    var match = this.users.where({ login: login });
+    var match = this.users.where({ login: login }),
+        user;
     if (!match || !match.length) {
-      throw new Error('User not found!');
+      user = new GitHubApp.Models.User({
+        login: login
+      });
+      this.users.add(user);
+    } else {
+      user = match[0];
     }
-    var user = match[0];
     user.fetch()
       .done(function () {
         GitHubApp.Controllers.FrontCtrl.setView({
@@ -40,7 +45,17 @@ var GitHubAppRouter = Backbone.Router.extend({
   },
   stats: function () {
     'use strict';
-    console.log('stats');
+    $.when.apply($, this.users.map(function (user) {
+      return user.fetch();
+    }))
+    .done(function () {
+      GitHubApp.Controllers.FrontCtrl.setView({
+        partial: 'partials/stats.tpl',
+        view   : GitHubApp.Views.Stats,
+        model  : this.users
+      });
+      GitHubApp.Controllers.FrontCtrl.render();
+    }.bind(this));
   }
 });
 
