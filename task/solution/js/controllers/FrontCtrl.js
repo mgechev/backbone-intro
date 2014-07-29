@@ -1,4 +1,4 @@
-/* global _, $ */
+/* global _, $, Backbone */
 
 var GitHubApp = GitHubApp || {};
 
@@ -14,6 +14,7 @@ GitHubApp.Controllers.FrontCtrl = {
     if (this.currentView) {
       this.currentView.remove();
     }
+    Backbone.trigger('load.start');
     GitHubApp.TemplateManager.get(this._current.partial)
     .then(function (partial) {
       var view = new this._current.view({
@@ -27,6 +28,7 @@ GitHubApp.Controllers.FrontCtrl = {
       view.render();
       view.delegateEvents();
       this.currentView = view;
+      Backbone.trigger('load.stop');
     }.bind(this));
     return this;
   }

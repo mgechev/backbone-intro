@@ -19,7 +19,6 @@ GitHubApp.Views.Home = Backbone.View.extend({
 
   addUser: function () {
     'use strict';
-    console.log('Adding user');
     var input = this.el.find('#user-input');
     this.model.add(new GitHubApp.Models.User({
       login: input.val()
