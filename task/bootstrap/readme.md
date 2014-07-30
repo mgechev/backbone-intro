@@ -2,6 +2,10 @@
 
 In this exercise we are going to create a simple Backbone.js application, which interacts with RESTful API.
 
+## Interactions between the components
+
+![Sequence](https://raw.githubusercontent.com/mgechev/backbone-intro/master/task/bootstrap/images/app.png "")
+
 ## Initial setup
 
 ```
