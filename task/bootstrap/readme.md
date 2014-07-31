@@ -15,7 +15,7 @@ bower install
 
 After that start a static HTTP server with root the web application's root directory.
 
-## Router
+## Router (router.js)
 
 1. In the `routes` object define that:
   1. When the user opens URL with hash equals to '/' should be invoked the `home` method.
